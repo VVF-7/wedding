@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карен &amp; Марина — 26 февраля 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#f8f4ec;
+    --ivory-deep:#f1ebdf;
+    --paper:#fbf8f1;
+    --burgundy:#7e1b2c;
+    --burgundy-deep:#5a0f1e;
+    --burgundy-soft:#a02638;
+    --rose:#b05a5a;
+    --rose-soft:#c98a8a;
+    --ink:#3a2528;
+    --muted:#9c8a85;
+    --line:rgba(126,27,44,0.18);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Montserrat',sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* деликатная бумажная текстура */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.35 0 0 0 0.025 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity:.6;
+  }
+
+  main{position:relative;z-index:1}
+
+  /* ===== ТИПОГРАФИКА ===== */
+  .caps{
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-weight:500;
+    font-size:.78rem;
+    color:var(--burgundy);
+  }
+  .script{
+    font-family:'Great Vibes',cursive;
+    font-weight:400;
+    color:var(--burgundy);
+    line-height:1.2;
+  }
+  .serif{font-family:'Cormorant Garamond',serif}
+
+  .wrap{max-width:480px;margin:0 auto;padding:0 28px}
+
+  section{padding:64px 0;position:relative;text-align:center}
+
+  /* ===== СЕРДЕЧКО-РАЗДЕЛИТЕЛЬ ===== */
+  .heart-divider{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:0 auto;
+    color:var(--burgundy);
+  }
+  .heart-divider .ln{
+    width:48px;height:1px;background:var(--burgundy);opacity:.5;
+  }
+  .heart-divider svg{width:18px;height:18px;fill:none;stroke:var(--burgundy);stroke-width:1.2}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:60px 28px;
+    background:var(--ivory);
+    position:relative;
+  }
+  .hero .top-script{
+    font-size:2.6rem;margin-bottom:6px;
+  }
+  .hero .pre{margin-bottom:30px}
+  .hero h1{
+    font-family:'Great Vibes',cursive;
+    font-weight:400;
+    font-size:clamp(3.4rem,13vw,5.2rem);
+    line-height:1.1;
+    color:var(--ink);
+    margin:18px 0;
+  }
+  .hero h1 .amp{
+    color:var(--burgundy);
+    margin:0 .05em;
+  }
+  .hero .date{
+    margin-top:30px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .hero .date .d-day{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.4rem;font-weight:500;
+    color:var(--burgundy);
+    line-height:1;
+  }
+  .hero .date .d-rest{font-size:.78rem}
+  .hero .scroll{
+    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;letter-spacing:.25em;
+    font-size:.62rem;color:var(--muted);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .hero .scroll .bar{
+    width:1px;height:36px;background:var(--burgundy);opacity:.6;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.2;transform:scaleY(.6)}50%{opacity:.7;transform:scaleY(1)}}
+
+  /* ===== БОРДОВАЯ ИНВЕРСИЯ-БЛОК ===== */
+  .burgundy-block{
+    background:var(--burgundy);
+    color:var(--ivory);
+    padding:80px 28px;
+  }
+  .burgundy-block .caps{color:var(--rose-soft)}
+  .burgundy-block .script{color:var(--ivory)}
+  .burgundy-block .heart-divider{color:var(--ivory)}
+  .burgundy-block .heart-divider .ln{background:var(--ivory);opacity:.4}
+  .burgundy-block .heart-divider svg{stroke:var(--ivory)}
+
+  /* ===== COUNTDOWN ===== */
+  .cd-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    max-width:380px;margin:34px auto 0;
+    border:1px solid rgba(255,255,255,0.2);
+  }
+  .cd-cell{
+    padding:22px 4px;
+    border-right:1px solid rgba(255,255,255,0.15);
+    text-align:center;
+  }
+  .cd-cell:last-child{border-right:none}
+  .cd-num{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;font-size:2.4rem;
+    line-height:1;color:var(--ivory);
+  }
+  .cd-unit{
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;letter-spacing:.2em;
+    font-size:.55rem;color:var(--rose-soft);
+    margin-top:10px;
+  }
+
+  /* ===== СЕКЦИОННЫЕ ЗАГОЛОВКИ ===== */
+  .sec-head{margin-bottom:42px}
+  .sec-head .script{font-size:2.4rem;margin-bottom:6px}
+  .sec-head .caps{display:block}
+
+  /* ===== ДЕТАЛИ ===== */
+  .details{display:flex;flex-direction:column;gap:36px}
+  .detail{text-align:center}
+  .detail .ic{
+    width:34px;height:34px;margin:0 auto 16px;
+  }
+  .detail .ic svg{width:100%;height:100%;fill:none;stroke:var(--burgundy);stroke-width:1.1}
+  .detail .sub{margin-bottom:10px;display:block}
+  .detail h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;font-size:1.5rem;
+    color:var(--ink);margin-bottom:8px;
+  }
+  .detail p{color:var(--muted);font-size:.92rem;line-height:1.6}
+  .map-link{
+    display:inline-block;margin-top:14px;
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;letter-spacing:.2em;
+    font-size:.62rem;font-weight:500;
+    color:var(--burgundy);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:border-color .3s ease,opacity .3s ease;
+  }
+  .map-link:hover{border-color:var(--burgundy);opacity:.85}
+
+  /* ===== ФОТО-КОЛЛАЖ (детские ч/б фото) ===== */
+  .photos{
+    display:flex;justify-content:center;align-items:flex-end;gap:14px;
+    margin:30px 0;
+  }
+  .photos .ph{
+    width:120px;height:160px;
+    background:linear-gradient(135deg,#6a4a4a,#3a2528);
+    border:4px solid var(--paper);
+    box-shadow:0 8px 24px -10px rgba(90,15,30,0.4);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,0.55);
+    font-family:'Great Vibes',cursive;font-size:1.6rem;
+  }
+  .photos .ph:nth-child(1){transform:translateY(14px) rotate(-3deg)}
+  .photos .ph:nth-child(2){width:140px;height:180px;z-index:2;transform:rotate(1deg)}
+  .photos .ph:nth-child(3){transform:translateY(10px) rotate(4deg)}
+  @media (max-width:420px){
+    .photos .ph{width:88px;height:120px}
+    .photos .ph:nth-child(2){width:104px;height:140px}
+  }
+
+  /* ===== ЦИТАТА ===== */
+  .quote{padding:60px 0}
+  .quote .script{font-size:2rem;line-height:1.5;max-width:340px;margin:0 auto;display:block}
+  .quote .who{
+    margin-top:24px;
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;letter-spacing:.2em;
+    font-size:.66rem;color:var(--rose);
+  }
+
+  /* ===== RSVP ===== */
+  .rsvp-form{
+    text-align:left;
+    background:var(--paper);
+    padding:36px 30px;
+    border:1px solid var(--line);
+  }
+  .rsvp-form .field{margin-bottom:22px}
+  .rsvp-form label{
+    display:block;
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;letter-spacing:.18em;
+    font-size:.62rem;color:var(--burgundy);
+    margin-bottom:10px;font-weight:500;
+  }
+  .rsvp-form input,.rsvp-form select,.rsvp-form textarea{
+    width:100%;
+    background:transparent;border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+    font-family:'Montserrat',sans-serif;font-weight:300;font-size:.95rem;
+    padding:8px 0;outline:none;transition:border-color .3s ease;
+  }
+  .rsvp-form input:focus,.rsvp-form select:focus,.rsvp-form textarea:focus{border-color:var(--burgundy)}
+  .rsvp-form select{
+    appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%237e1b2c' fill='none' stroke-width='1.2'/></svg>");
+    background-repeat:no-repeat;background-position:right 2px center;
+  }
+  .rsvp-form select option{background:var(--paper);color:var(--ink)}
+  .rsvp-form textarea{resize:vertical;min-height:64px;font-family:'Montserrat',sans-serif}
+  .rsvp-form input::placeholder,.rsvp-form textarea::placeholder{color:#c4b5af;font-weight:300}
+  .rsvp-form .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:420px){.rsvp-form .row{grid-template-columns:1fr;gap:0}}
+
+  .btn{
+    display:block;width:100%;
+    background:var(--burgundy);color:var(--ivory);
+    border:none;padding:16px 24px;
+    font-family:'Montserrat',sans-serif;font-weight:500;
+    text-transform:uppercase;letter-spacing:.22em;font-size:.7rem;
+    cursor:pointer;transition:background .3s ease;margin-top:6px;
+  }
+  .btn:hover{background:var(--burgundy-deep)}
+
+  .rsvp-success{
+    text-align:center;padding:30px 16px;display:none;
+  }
+  .rsvp-success.show{display:block;animation:fadeIn .6s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .rsvp-success .ic{
+    width:54px;height:54px;margin:0 auto 18px;
+    border:1px solid var(--burgundy);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .rsvp-success .ic svg{width:24px;height:24px;stroke:var(--burgundy);fill:none;stroke-width:1.4}
+  .rsvp-success .script{font-size:1.8rem;margin-bottom:8px}
+  .rsvp-success p{color:var(--muted);font-size:.9rem}
+
+  /* ===== FOOTER ===== */
+  footer{
+    text-align:center;padding:60px 28px 50px;
+    background:var(--burgundy);color:var(--ivory);
+  }
+  footer .names{
+    font-family:'Great Vibes',cursive;font-size:2.2rem;
+    color:var(--ivory);margin-bottom:16px;
+  }
+  footer .meta{
+    font-family:'Montserrat',sans-serif;text-transform:uppercase;
+    letter-spacing:.25em;font-size:.66rem;color:var(--rose-soft);
+  }
+  footer .heart{color:var(--ivory);margin:0 .4em}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <p class="script top-script">приглашение</p>
+    <p class="caps pre">на нашу свадьбу</p>
+
+    <h1>Карен <span class="amp">&amp;</span> Марина</h1>
+
+    <div class="date">
+      <span class="d-day">26</span>
+      <span class="caps d-rest">Февраля · 2027</span>
+    </div>
+
+    <div class="scroll" aria-hidden="true">
+      <span class="bar"></span>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN (бордовая инверсия) ===== -->
+  <section class="burgundy-block reveal">
+    <p class="script" style="font-size:1.8rem">до торжества</p>
+    <p class="caps" style="margin-top:4px">осталось</p>
+
+    <div class="cd-grid" id="cd">
+      <div class="cd-cell"><div class="cd-num" id="d-days">0</div><div class="cd-unit">Дней</div></div>
+      <div class="cd-cell"><div class="cd-num" id="d-hours">0</div><div class="cd-unit">Часов</div></div>
+      <div class="cd-cell"><div class="cd-num" id="d-mins">0</div><div class="cd-unit">Минут</div></div>
+      <div class="cd-cell"><div class="cd-num" id="d-secs">0</div><div class="cd-unit">Секунд</div></div>
+    </div>
+  </section>
+
+  <!-- ===== ДЕТАЛИ ===== -->
+  <section class="reveal">
+    <div class="wrap">
+      <div class="heart-divider" aria-hidden="true">
+        <span class="ln"></span>
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9-9.2C1.6 8 3 4.5 6.2 4.5c2 0 3.2 1.2 3.8 2.2C10.6 5.7 11.8 4.5 13.8 4.5 17 4.5 18.4 8 16.9 11.8 14.9 16.4 12 21 12 21z"/></svg>
+        <span class="ln"></span>
+      </div>
+
+      <div class="sec-head" style="margin-top:30px">
+        <p class="script">детали</p>
+        <span class="caps">события</span>
+      </div>
+
+      <div class="details">
+        <div class="detail">
+          <div class="ic">
+            <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1"/><path d="M4 9h16M9 3v4M15 3v4"/></svg>
+          </div>
+          <span class="caps sub">Когда</span>
+          <h3 class="serif">26 февраля 2027</h3>
+          <p>Пятница · сбор гостей с 16:30<br>Торжество начинается в 17:00</p>
+        </div>
+
+        <div class="detail">
+          <div class="ic">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          </div>
+          <span class="caps sub">Где</span>
+          <h3 class="serif">Гранд Каньон</h3>
+          <p>Ресторан-лофт<br>ул. Батумское шоссе 135А</p>
+          <a class="map-link" href="https://yandex.ru/maps/?text=Батумское%20шоссе%20135А" target="_blank" rel="noopener">Открыть на карте →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ч/Б ФОТО-КОЛЛАЖ ===== -->
+  <section class="reveal">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="script">мы</p>
+        <span class="caps">наши истории</span>
+      </div>
+
+      <div class="photos">
+        <div class="ph">К</div>
+        <div class="ph">М</div>
+        <div class="ph">♥</div>
+      </div>
+
+      <p style="color:var(--muted);font-size:.9rem;margin-top:8px;font-style:italic" class="serif">
+        Два пути, что шли параллельно, однажды встретились — и с тех пор идут вместе.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ЦИТАТА ===== -->
+  <section class="quote reveal">
+    <div class="wrap">
+      <p class="script">«любовь — это когда тишина между двумя становится разговором»</p>
+      <p class="who">— с нетерпением ждём вас</p>
+    </div>
+  </section>
+
+  <!-- ===== RSVP ===== -->
+  <section class="reveal">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="script">анкета гостя</p>
+        <span class="caps">будете ли вы с нами</span>
+      </div>
+
+      <form class="rsvp-form" id="rsvp-form" autocomplete="on">
+        <div class="field">
+          <label for="r-name">Имя и фамилия</label>
+          <input type="text" id="r-name" name="name" placeholder="Анна Смирнова" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="r-attend">Придёте?</label>
+            <select id="r-attend" name="attend" required>
+              <option value="">— Выбрать —</option>
+              <option value="yes">Да, с радостью</option>
+              <option value="no">К сожалению, нет</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="r-guests">Гостей</label>
+            <select id="r-guests" name="guests">
+              <option value="1">1 (только я)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="r-diet">Предпочтения в еде</label>
+          <input type="text" id="r-diet" name="diet" placeholder="Аллергии, вегетарианское меню...">
+        </div>
+
+        <div class="field">
+          <label for="r-wish">Пожелания или вопросы</label>
+          <textarea id="r-wish" name="wish" placeholder="Любимая песня для танцпола, поздравление..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Отправить ответ</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvp-success">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div>
+        <p class="script">спасибо</p>
+        <p id="rsvp-success-msg">Мы получили ваше подтверждение.<br>До встречи 26 февраля 2027.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p class="names">Карен &amp; Марина</p>
+    <div class="heart-divider" style="margin-bottom:18px" aria-hidden="true">
+      <span class="ln"></span>
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9-9.2C1.6 8 3 4.5 6.2 4.5c2 0 3.2 1.2 3.8 2.2C10.6 5.7 11.8 4.5 13.8 4.5 17 4.5 18.4 8 16.9 11.8 14.9 16.4 12 21 12 21z"/></svg>
+      <span class="ln"></span>
+    </div>
+    <p class="meta">26 · 02 · 2027 <span class="heart">♥</span> с любовью</p>
+  </footer>
+
+</main>
+
+<script>
+/* ===== COUNTDOWN ===== */
+(function(){
+  const target = new Date('2027-02-26T17:00:00').getTime();
+  const elD = document.getElementById('d-days');
+  const elH = document.getElementById('d-hours');
+  const elM = document.getElementById('d-mins');
+  const elS = document.getElementById('d-secs');
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+    if (diff < 0) diff = 0;
+    elD.textContent = Math.floor(diff / 86400000);
+    elH.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+    elM.textContent = pad(Math.floor(diff % 3600000 / 60000));
+    elS.textContent = pad(Math.floor(diff % 60000 / 1000));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ===== REVEAL ON SCROLL ===== */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ===== RSVP ===== */
+(function(){
+  const form = document.getElementById('rsvp-form');
+  const ok = document.getElementById('rsvp-success');
+  const okMsg = document.getElementById('rsvp-success-msg');
+
+  try{
+    const saved = JSON.parse(localStorage.getItem('rsvp_km2027') || 'null');
+    if (saved && saved.name){
+      form.style.display = 'none';
+      ok.classList.add('show');
+      okMsg.innerHTML = saved.attend === 'no'
+        ? 'Жаль, что вы не сможете прийти, '+saved.name+'.<br>Мы будем скучать по вам.'
+        : 'Спасибо, '+saved.name+'!<br>Ждём вас 26 февраля 2027.';
+    }
+  }catch(e){}
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = {
+      name: form.name.value.trim(),
+      attend: form.attend.value,
+      guests: form.guests.value,
+      diet: form.diet.value.trim(),
+      wish: form.wish.value.trim()
+    };
+    if (!data.name || !data.attend) return;
+    localStorage.setItem('rsvp_km2027', JSON.stringify(data));
+    form.style.display = 'none';
+    okMsg.innerHTML = data.attend === 'no'
+      ? 'Жаль, что вы не сможете прийти, '+data.name+'.<br>Мы будем скучать по вам.'
+      : 'Спасибо, '+data.name+'!<br>Ждём вас 26 февраля 2027.';
+    ok.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
