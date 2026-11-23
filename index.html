@@ -198,12 +198,15 @@
   }
   .photos .ph{
     width:120px;height:160px;
-    background:linear-gradient(135deg,#6a4a4a,#3a2528);
+    background:var(--ivory-deep);
     border:4px solid var(--paper);
     box-shadow:0 8px 24px -10px rgba(90,15,30,0.4);
-    display:flex;align-items:center;justify-content:center;
-    color:rgba(255,255,255,0.55);
-    font-family:'Great Vibes',cursive;font-size:1.6rem;
+    overflow:hidden;
+    position:relative;
+  }
+  .photos .ph img{
+    width:100%;height:100%;
+    object-fit:cover;display:block;
   }
   .photos .ph:nth-child(1){transform:translateY(14px) rotate(-3deg)}
   .photos .ph:nth-child(2){width:140px;height:180px;z-index:2;transform:rotate(1deg)}
@@ -253,6 +256,23 @@
     background-repeat:no-repeat;background-position:right 2px center;
   }
   .rsvp-form select option{background:var(--paper);color:var(--ink)}
+  .rsvp-form .toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .rsvp-form .toggle-btn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--muted);
+    font-family:'Montserrat',sans-serif;font-weight:400;font-size:.8rem;
+    padding:14px 8px;cursor:pointer;
+    transition:all .3s ease;
+    line-height:1.3;
+  }
+  .rsvp-form .toggle-btn:hover{border-color:var(--burgundy);color:var(--ink)}
+  .rsvp-form .toggle-btn.active{
+    background:var(--burgundy);
+    border-color:var(--burgundy);
+    color:var(--ivory);
+  }
+  @media (max-width:420px){.rsvp-form .toggle{grid-template-columns:1fr}}
   .rsvp-form textarea{resize:vertical;min-height:64px;font-family:'Montserrat',sans-serif}
   .rsvp-form input::placeholder,.rsvp-form textarea::placeholder{color:#c4b5af;font-weight:300}
   .rsvp-form .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -377,13 +397,12 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="script">мы</p>
-        <span class="caps">наши истории</span>
       </div>
 
       <div class="photos">
-        <div class="ph">К</div>
-        <div class="ph">М</div>
-        <div class="ph">♥</div>
+        <div class="ph"><img alt="Фото 1" id="ph-1" src="wedding-photos/photo1.jpg" loading="lazy"></div>
+        <div class="ph"><img alt="Фото 2" id="ph-2" src="wedding-photos/photo2.jpg" loading="lazy"></div>
+        <div class="ph"><img alt="Фото 3" id="ph-3" src="wedding-photos/photo3.jpg" loading="lazy"></div>
       </div>
 
       <p style="color:var(--muted);font-size:.9rem;margin-top:8px;font-style:italic" class="serif">
@@ -414,34 +433,24 @@
           <input type="text" id="r-name" name="name" placeholder="Анна Смирнова" required>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label for="r-attend">Придёте?</label>
-            <select id="r-attend" name="attend" required>
-              <option value="">— Выбрать —</option>
-              <option value="yes">Да, с радостью</option>
-              <option value="no">К сожалению, нет</option>
-            </select>
+        <div class="field">
+          <label>Придёте?</label>
+          <div class="toggle" role="radiogroup" aria-label="Придёте?">
+            <button type="button" class="toggle-btn" data-attend="yes">Да, с радостью</button>
+            <button type="button" class="toggle-btn" data-attend="no">К сожалению, нет</button>
           </div>
-          <div class="field">
-            <label for="r-guests">Гостей</label>
-            <select id="r-guests" name="guests">
-              <option value="1">1 (только я)</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
+          <input type="hidden" id="r-attend" name="attend" value="" required>
         </div>
 
         <div class="field">
-          <label for="r-diet">Предпочтения в еде</label>
-          <input type="text" id="r-diet" name="diet" placeholder="Аллергии, вегетарианское меню...">
-        </div>
-
-        <div class="field">
-          <label for="r-wish">Пожелания или вопросы</label>
-          <textarea id="r-wish" name="wish" placeholder="Любимая песня для танцпола, поздравление..."></textarea>
+          <label for="r-guests">Сколько человек придёт?</label>
+          <select id="r-guests" name="guests">
+            <option value="1">1 человек</option>
+            <option value="2">2 человека</option>
+            <option value="3">3 человека</option>
+            <option value="4">4 человека</option>
+            <option value="5">5 человек</option>
+          </select>
         </div>
 
         <button type="submit" class="btn">Отправить ответ</button>
@@ -504,6 +513,17 @@
   const form = document.getElementById('rsvp-form');
   const ok = document.getElementById('rsvp-success');
   const okMsg = document.getElementById('rsvp-success-msg');
+  const attendInput = document.getElementById('r-attend');
+  const toggleBtns = form.querySelectorAll('.toggle-btn');
+
+  /* кнопки-переключатели «придёте?» */
+  toggleBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      toggleBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      attendInput.value = btn.dataset.attend;
+    });
+  });
 
   try{
     const saved = JSON.parse(localStorage.getItem('rsvp_km2027') || 'null');
@@ -521,9 +541,7 @@
     const data = {
       name: form.name.value.trim(),
       attend: form.attend.value,
-      guests: form.guests.value,
-      diet: form.diet.value.trim(),
-      wish: form.wish.value.trim()
+      guests: form.guests.value
     };
     if (!data.name || !data.attend) return;
     localStorage.setItem('rsvp_km2027', JSON.stringify(data));
